@@ -49,7 +49,6 @@ exports.login = (req: Request, res: Response) => {
               message: "Invalid Password",
             });
           }
-
           var token = jwt.sign(
             {
               id: user.id,
