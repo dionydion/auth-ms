@@ -57,7 +57,7 @@ exports.login = (req: Request, res: Response) => {
             },
             secretKey,
             {
-              expiresIn: 86400,
+              expiresIn: "86400",
             }
           );
 
