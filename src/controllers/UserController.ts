@@ -25,7 +25,26 @@ exports.signup = (req: Request, res: Response) => {
       const createdUser = user
         .save()
         .then((result) => {
-          res.status(200).json(result);
+          var token = jwt.sign(
+            {
+              id: result.id,
+              role: result.role,
+            },
+            secretKey,
+            {
+              expiresIn: "5s",
+            }
+          );
+
+          res.status(200).send({
+            user: {
+              id: user.id,
+              email: user.email,
+              role: user.role,
+            },
+            message: "Login successful",
+            accessToken: token,
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -56,7 +75,7 @@ exports.login = (req: Request, res: Response) => {
             },
             secretKey,
             {
-              expiresIn: "86400",
+              expiresIn: "1hr",
             }
           );
 

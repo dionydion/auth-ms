@@ -23,6 +23,10 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     }
     req.body.user = decoded.role;
     next();
+  } else {
+    res.status(401).send({
+      message: "JWT verification failed",
+    });
   }
 };
 
