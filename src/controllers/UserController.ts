@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 
 var UserModel = require("../models/UserModel");
@@ -75,7 +76,7 @@ exports.login = (req: Request, res: Response) => {
             },
             secretKey,
             {
-              expiresIn: "1hr",
+              expiresIn: "5s",
             }
           );
 
